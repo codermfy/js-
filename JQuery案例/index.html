@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>标题</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="淡入" id="fadeIn"/>
+  <input type="button" value="淡出" id="fadeOut"/>
+  <input type="button" value="切换" id="fadeToggle"/>
+  <input type="button" value="淡入到那里" id="fadeTo"/><br/><br/>
+  <div id="div1"></div>
+</body>
+</html>
+<script src="./js/new_file.js"></script>
+<script>
+  $(function () {
+    //1.淡入 fadeIn
+    $('#fadeIn').click(function () {
+      //让id为div1的这个元素淡入.
+      //$('#div1').fadeIn(); //不给参数相当于给了一个默认的动画时长,mormal400毫秒
+      $('#div1').fadeIn(1000);
+      // $('#div1').fadeIn(2000, function () {
+      //   alert('淡入完成了...');
+      // });
+    });
+
+    //2.淡出 fadeOut
+    $('#fadeOut').click(function () {
+      //让id为div1的这个元素淡出
+      $('#div1').fadeOut(1000);
+      // $('#div1').fadeOut(1000, function () {
+      //   alert('淡出完成了');
+      // });
+    });
+
+
+    //3.切换 fadeToggle
+    $('#fadeToggle').click(function () {
+      $('#div1').fadeToggle(1000);
+    });
+
+
+    //4.淡入到那里 fadeTo
+    $('#fadeTo').click(function () {
+      $('#div1').fadeTo(1000,0.5);
+    });
+		// console.log(typeof(NaN))
+		
+		
+		$.ajax({
+		url:"http://123.207.32.32:8000/home/multidata",
+		dataType:"jsonp",
+		// type:"get",//可以省略
+		jsonpCallback:"show",//->自定义传递给服务器的函数名，而不是使用jQuery自动生成的，可省略
+		jsonp:"callback",//->把传递函数名的那个形参callback，可省略
+		success:function (data){
+		console.log(data);}
+		});
+		
+  });
+</script>

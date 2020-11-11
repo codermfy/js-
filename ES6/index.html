@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="test"></div>
+		<script type="text/javascript">
+			// function f(){
+			// 	let c=20;
+			// }
+			// {
+			// 	let b=20;
+			// }
+			// 块级作用域
+			
+			// console.log(b);
+			// let b=20;
+			// 不存在声明提升
+			
+			// let a=20;
+			// let a=10;
+			// 不允许重复声明
+			
+			// const a=10;
+			// a=20; 
+			// const不能重复赋值
+			
+			// let [a,b,c]=[1,2,3]
+			// console.log(a,b,c);
+			// 1 2 3
+			
+			// let [a=3,b]=[2];
+			// console.log(a,b);
+			// 2 undefined
+			
+			// let c;
+			// let[a=2]=[c]
+			// console(a);
+			// 2
+			
+			// let {a,b}={a:"1",b:"2"};
+			// console(a,b);
+			// 1 2
+			// let {a:b}={a:100};
+			// console.log(a);
+			// 100
+			
+			// let {a,b=5}={a:1};
+			// console.log(a,b)
+			// 1 5
+			
+			// let obj ={"name":"john","age":20};
+			// let{name,age}=obj
+			// console.log(`${name}的年龄是${age}`);
+			
+			// var arr=[0,1,2,3,4];
+			// let oul=document.getElementById("test");
+			// var html="";
+			// for(var i in arr){
+			// 	html+=`<li>
+			// 	${arr[i]}
+			// 	</li>`
+			// }
+			// oul.innerHTML=html;
+			
+			// var foo=function(){
+			// 	return 1;
+			// }
+			// let foo=()=>1;
+			// console.log(foo());
+			
+			// let foo=(a)=>{
+			// 	let b=10;
+			// 	return a+b;
+			// }
+			// console.log(foo(1));
+			// var name="window";
+			// var obj={
+			// 	"name":"john",
+			// 	"sayhello":function(){
+			// 		console.log(this.name);
+			// 	}
+			// } 
+			//------john
+			//箭头函数的this是在定义函数时绑定的，不是在执行过程中绑定的。简单的说，函数在定义时，this就继承了定义函数的对象↓
+			//箭头函数中的this是如何查找的？
+			//答案：向外层作用域中，一层一层的查找this,直到有this的定义
+			// var obj={
+			// 	"name":"john",
+			// 	"sayhello":()=>{
+			// 		console.log(this.name);
+			// 	},
+			// 	aaa(){
+			// 		console.log(this.name);
+			// 		setTimeout(()=>{
+			// 			console.log(this.name);
+			// 		})
+			// 	}
+			// }
+			// obj.sayhello(); 
+			//window
+			// obj.aaa();
+			//join
+			//      || 相当于
+			// var obj={};
+			// obj.name="john";
+			// obj.sayhello=()=>{
+			// 	console.log(this.name);
+			// }
+			
+			var set= new Set([1,2,3,2,3,2,1,4]);
+			//扩展运算符...
+			var arr=[...set];
+			// console.log(arr);
+			
+			// for(let i of set){
+			// 	console.log(i);
+			// }
+			// for(let i of arr){
+			// 	console.log(i);
+			// } 
+			// 遍历元素而不是索引
+			// set.add(0);
+			// console.log(set);
+			// set.delete(0);
+			// console.log(set);
+			// set.clear()
+			// console.log(set);
+			
+			// for(let item of set.keys()){
+			// 	console.log(item);
+			// }
+			// for(let item of set.values()){
+			// 	console.log(item);
+			// }
+			// for(let [key,item] of set.entries()){
+			// 	console.log(key,item);
+			// }
+			// set.forEach((item,key)=>console.log(item*2,key*2));
+			
+			// var map=new Map([["name","john"],["age",20]]);
+			// console.log(map);
+			// map.set("sex","male");
+			// console.log(map);
+			
+			// function* foo(x){
+			// 	yield x+1;
+			// 	yield x+2;
+			// 	return x+3;
+			// }
+			// var f=foo(1);
+			// console.log(f.next(),f.next(),f.next());
+			
+			// next()参数表示上一次的返回数,代替上一次的yield
+			
+			
+			//斐波那契数列
+			// function* fb(n){
+			// 	let a=0;
+			// 	let b=1;
+			// 	for(let i=0;i<n;i++){
+			// 		yield a;
+			// 		let temp=a+b;
+			// 		a=b;
+			// 		b=temp;
+			// 	}
+			// }
+			// var f=fb(10);
+			// console.log(f);
+			// for(let i of f){
+			// 	console.log(i);
+			// }
+			class Person{
+				constructor(name) {
+				    this.name=name;
+				}
+				sayhello(){
+					console.log(this.name);
+				}
+			}
+			var person=new Person("ssss");
+			person.sayhello();
+		</script>
+	</body>
+</html>

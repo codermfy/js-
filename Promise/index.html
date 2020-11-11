@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1.使用setTimeout
+			// setTimeout(()=>{
+			// 	console.log('1111');
+			// },1000)
+			
+			//参数 ->函数(resolve,reject)
+			//resolve,reject 本身又是函数
+			//链式编程
+			// new Promise((resolve,reject)=>{
+			// 	//第一次请求代码
+			// 	setTimeout(()=>{
+			// 		resolve()
+			// 	},1000)
+			// }).then(()=>{
+			// 	//第一次处理代码
+			// 	console.log('1111');
+				
+			// 	return new Promise((resolve,reject)=>{
+			// 		//第二次请求代码
+			// 		setTimeout(()=>{
+			// 			resolve()
+			// 		},1000)
+			// 	})
+			// }).then(()=>{
+			// 	//第二次处理代码
+			// 	console.log('2222');
+				
+			// 	return new Promise((resolve,reject)=>{
+			// 		//第三次请求代码
+			// 		setTimeout(()=>{
+			// 			resolve()
+			// 		},1000)
+			// 	})
+			// }).then(()=>{
+			// 	//第三次处理代码
+			// 	console.log('3333');
+			// })
+			
+			//什么情况下会用到Pormise？
+			//一般情况下是有异步操作时，使用Promise对这个异步操作进行封装
+			//new ->构造函数(1.保存了一些状态信息 2.执行传入的函数)
+			//在执行传入的回调函数时，会传入两个参数，resolve，reject，本身又是函数
+			// new Promise((resolve,reject)=>{
+			// 	setTimeout(()=>{
+			// 		//成功的时候调用
+			// 		resolve('hello world')
+			// 		//失败的时候调用
+			// 		reject('error msg')
+			// 	},1000)
+			// }).then((data)=>{
+			// 	//多行处理代码
+			// 	console.log(data);
+			// }).catch((error)=>{
+			// 	console.log(error);
+			// })
+			
+			//Promise的另外写法，then里面调用成功和失败的处理函数
+			// new Promise((reslove,reject)=>{
+			// 	setTimeout(()=>{
+			// 		reslove('hello world')
+			// 		reject('error msg')
+			// 	})
+			// }).then(data=>{
+			// 	console.log(data)
+			// },err=>{
+			// 	console.log(err)
+			// })
+			
+			
+			//wrapped into
+			//网络请求 ：aaa -> 自己处理（10行）
+			//处理：aaa111 ->自己处理（10行）
+			//处理：aaa111222 -> 自己处理
+			//new Promise（resolve => resolve(结果)）简写
+			// new Promise((resolve,reject)=>{
+			// 	setTimeout(()=>{
+			// 		resolve('aaa')
+			// 	},1000)
+			// }).then(res=>{
+			// 	console.log(res,'第一层10行代码');
+			// 	return new Promise((resolve)=>{
+			// 		resolve(res+'111')
+			// 	})
+			// }).then(res =>{
+			// 	console.log(res,'第二层10行代码');
+			// 	return new Promise((resolve)=>{
+			// 		resolve(res+'222');
+			// 	})
+			// }).then(res => {
+			// 	console.log(res,"第三层10行代码")
+			// })
+			//用Promise.resolve()或失败的话使用Promise.reject(),并catch它
+			// new Promise((resolve,reject)=>{
+			// 	setTimeout(()=>{
+			// 		resolve('aaa')
+			// 	},1000)
+			// }).then(res=>{
+			// 	console.log(res,'第一层10行代码');
+			// 	return Promise.resolve(res+'111')
+				
+			// }).then(res =>{
+			// 	console.log(res,'第二层10行代码');
+			// 	return Promise.resolve(res+'222')
+				
+			// }).then(res => {
+			// 	console.log(res,"第三层10行代码")
+			// })
+			//省略掉Promise.resolve或失败的话使用 throw 'err'，并catch它
+			// new Promise((resolve,reject)=>{
+			// 	setTimeout(()=>{
+			// 		resolve('aaa')
+			// 	},1000)
+			// }).then(res=>{
+			// 	console.log(res,'第一层10行代码');
+			// 	return res+'111'
+				
+			// }).then(res =>{
+			// 	console.log(res,'第二层10行代码');
+			// 	return res+'222'
+				
+			// }).then(res => {
+			// 	console.log(res,"第三层10行代码")
+			// })
+			
+			
+			
+			//假如有需要从服务端请求2次才能处理数据
+			//请求1
+			// var flag1=false
+			// var flag2=false
+			// $ajax({
+			// 	url:'',
+			// 	success:funtcion(){
+			// 		flag1=true;
+			// 		handler();
+			// 	}
+			// })
+			// //请求2
+			// $ajax({
+			// 	url:'',
+			// 	success:funtcion(){
+			// 		flag2=true;
+			// 		handler();
+			// 	}
+			// })
+			// funtcion handler(){
+			// 	if(flag1&&flag2){
+			// 		//
+			// 	}
+			// }
+			//用Promise.all解决,解决了需要判断2个请求都完成才能操作的。。。
+			// Promise.all([
+			// 	new Promise((resolve,reject)=>{
+			// 		$ajax({
+			// 			url:'url1',
+			// 			success:funtcion(data){
+			// 				resolve(data)
+			// 			}
+			// 		})
+			// 	}),
+			// 	new Promise((resolve,reject)=>{
+			// 		$ajax({
+			// 			url:'',
+			// 			success:funtcion(data){
+			// 				resolve(data)
+			// 			}
+			// 		})
+			// 	}),
+			// ]).then(results = >{
+			// 	//results[0]=data1
+			// 	//results[1]=data2
+			// })
+		</script>
+	</body>
+</html>
